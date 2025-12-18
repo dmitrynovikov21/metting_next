@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # nginx: ... removed (handled by host)
+  # certbot: ... removed (handled by host)
+
+  frontend:
+    build:
+      context: ./final-product
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_APP_URL=https://protocol.futurist-ai.net
+    ports:
+      - "127.0.0.1:3002:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./ai-ops-manager-bot
+      dockerfile: Dockerfile
+    restart: always
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    env_file:
+      - ./ai-ops-manager-bot/.env
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./ai-ops-manager-bot/storage:/app/storage
+    ports:
+      - "127.0.0.1:8002:8000"
+
+  worker:
+    build:
+      context: ./ai-ops-manager-bot
+      dockerfile: Dockerfile
+    restart: always
+    command: celery -A app.worker.celery_app worker --loglevel=info
+    env_file:
+      - ./ai-ops-manager-bot/.env
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./ai-ops-manager-bot/storage:/app/storage
+
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=aiops
+    ports:
+      - "127.0.0.1:5442:5432"
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    volumes:
+      - redis_data:/data
+    ports:
+      - "127.0.0.1:6389:6379"
+
+volumes:
+  postgres_data:
+  redis_data:

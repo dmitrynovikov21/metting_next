@@ -1,0 +1,27 @@
+# General
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.env
+.env.local
+.env.*.local
+
+# Node/Next.js
+node_modules/
+.next/
+build/
+dist/
+.npm
+*.log

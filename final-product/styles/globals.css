@@ -1,0 +1,345 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================================== */
+/* STARTER SHADCN THEME VARIABLES (Required for UI components) */
+/* ========================================================== */
+@layer base {
+  :root {
+    /* Enforce Dark Theme by default even in root */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --radius: 0.5rem;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+/* ========================================================== */
+/* GRAVITY CUSTOM THEME (My Design System)                     */
+/* ========================================================== */
+
+:root {
+  /* Background Layers */
+  --color-bg-void: #030304;
+  --color-bg-deep: #0A0A0C;
+  --color-bg-surface: #111114;
+  --color-bg-elevated: #18181B;
+
+  /* Glass Effects */
+  --color-glass-white-2: rgba(255, 255, 255, 0.02);
+  --color-glass-white-5: rgba(255, 255, 255, 0.05);
+  --color-glass-white-8: rgba(255, 255, 255, 0.08);
+  --color-glass-border: rgba(255, 255, 255, 0.04);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.12);
+
+  /* Text Hierarchy */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-tertiary: rgba(255, 255, 255, 0.5);
+  --color-text-muted: rgba(255, 255, 255, 0.3);
+  --color-text-ghost: rgba(255, 255, 255, 0.15);
+
+  /* Accent Colors */
+  --color-accent-primary: #3B82F6;
+  --color-accent-primary-light: #60A5FA;
+
+  /* Semantic */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+
+  /* Meeting Types */
+  --color-type-internal: #6366F1;
+  --color-type-client: #10B981;
+  --color-type-strategy: #F59E0B;
+  --color-type-interview: #EC4899;
+  --color-type-partner: #8B5CF6;
+
+  /* Neon System */
+  --color-neon-blue: #3b82f6;
+  --color-neon-cyan: #06b6d4;
+  --color-void: #000000;
+  --color-surface: #0A0A0C;
+  --color-surface-highlight: #111114;
+
+  --color-glass-blue: rgba(59, 130, 246, 0.1);
+  --color-glass-border-blue: rgba(59, 130, 246, 0.3);
+
+  /* Shadows & Glows */
+  --shadow-glow-primary: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 60px rgba(59, 130, 246, 0.1);
+  --shadow-type-glow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================================== */
+/* BASE STYLES                                                */
+/* ========================================================== */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-void);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-bg-elevated);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-primary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight;
+  }
+}
+
+/* ========================================================== */
+/* GRAVITY CUSTOM COMPONENTS                                  */
+/* ========================================================== */
+
+@layer components {
+
+  /* Glass Elevated */
+  .glass-elevated {
+    background: var(--color-glass-white-5);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--color-glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Bento Card */
+  .bento-card {
+    background: rgba(17, 17, 20, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 28px;
+    padding: 1.5rem;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bento-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border-color: var(--color-glass-border-hover);
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-primary-light));
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-primary);
+  }
+
+  /* Ghost Button */
+  .btn-ghost {
+    background: var(--color-glass-white-2);
+    border: 1px solid var(--color-glass-border);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    padding: 0.625rem 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-ghost:hover {
+    background: var(--color-glass-white-8);
+    border-color: var(--color-glass-border-hover);
+    color: var(--color-text-primary);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 50%, #3B82F6 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+  }
+}
+
+/* ========================================================== */
+/* UTILITIES                                                  */
+/* ========================================================== */
+
+@layer utilities {
+  .step {
+    counter-increment: step;
+  }
+
+  .step:before {
+    @apply absolute w-9 h-9 bg-muted rounded-full font-mono font-medium text-center text-base inline-flex items-center justify-center -indent-px border-4 border-background;
+    @apply ml-[-50px] mt-[-4px];
+    content: counter(step);
+  }
+
+  .text-gradient_indigo-purple {
+    background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ========================================================== */
+/* ANIMATIONS                                                 */
+/* ========================================================== */
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+
+  50% {
+    background-position: 100% center;
+  }
+}
+
+@keyframes ambientFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+    opacity: 0.4;
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+    opacity: 0.25;
+  }
+}
+
+.animate-ambient-float {
+  animation: ambientFloat 15s ease-in-out infinite;
+}
+
+@keyframes uploadPulse {
+
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 107, 53, 0.05);
+  }
+
+  50% {
+    border-color: rgba(255, 107, 53, 0.5);
+    background: rgba(255, 107, 53, 0.1);
+  }
+}
+
+.animate-upload-pulse {
+  animation: uploadPulse 2s ease infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(10px, -20px) rotate(90deg);
+  }
+
+  50% {
+    transform: translate(-5px, -40px) rotate(180deg);
+  }
+
+  75% {
+    transform: translate(15px, -20px) rotate(270deg);
+  }
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
